@@ -11395,7 +11395,6 @@ var MessageActionsvue_type_script_lang_js_require = __webpack_require__("bd43"),
       type: Array,
       required: true
     },
-    timeSinceSent: { type: Number, required: true },
     roomFooterRef: {
       type: HTMLDivElement,
       "default": null
@@ -11898,7 +11897,6 @@ var _require2 = __webpack_require__("bd43"),
       type: Array,
       required: true
     },
-    timeSinceSent: { type: Number, required: true },
     roomFooterRef: {
       type: HTMLDivElement,
       "default": null

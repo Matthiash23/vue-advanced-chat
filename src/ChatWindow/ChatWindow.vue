@@ -114,8 +114,8 @@ export default {
 			type: Array,
 			default: () => [
 				{ name: 'replyMessage', title: 'Reply' },
-				{ name: 'editMessage', title: 'Edit Message', onlyMe: true },
-				{ name: 'deleteMessage', title: 'Delete Message', onlyMe: true }
+				{ name: 'editMessage', title: 'Edit Message', onlyMe: true, recentEnough: true },
+				{ name: 'deleteMessage', title: 'Delete Message', onlyMe: true, recentEnough: true }
 			]
 		},
 		showAddRoom: { type: Boolean, default: true },

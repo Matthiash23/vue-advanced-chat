@@ -102,7 +102,6 @@ export default {
 		currentUserId: { type: [String, Number], required: true },
 		message: { type: Object, required: true },
 		messageActions: { type: Array, required: true },
-    	timeSinceSent: { type: Number, required: true },
 		roomFooterRef: { type: HTMLDivElement, default: null },
 		showReactionEmojis: { type: Boolean, required: true },
 		hideOptions: { type: Boolean, required: true },
@@ -143,9 +142,15 @@ export default {
 			)
 		},
 		filteredMessageActions() {
-			return this.message.senderId === this.currentUserId
+			// filtering w/ ifs wld need smthg nicer
+			if(message.onlyMe)
+			{return this.message.senderId === this.currentUserId
 				? this.messageActions
-				: this.messageActions.filter(message => !message.onlyMe)
+				: this.messageActions.filter(message => !message.onlyMe)}
+			if(message.recentEnough)
+			{return this.message.timeSinceSent <= 4
+				? this.messageActions
+				: this.messageActions.filter(message => !message.recentEnough)}
 		}
 	},
 
