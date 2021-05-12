@@ -132,6 +132,7 @@ export interface Props {
 	'room-actions'?: CustomActions
 	'menu-actions'?: CustomActions
 	'message-actions'?: CustomActions
+	'timeSinceSent'?: number
 	'show-add-room'?: boolean
 	'show-send-icon'?: boolean
 	'show-files'?: boolean
