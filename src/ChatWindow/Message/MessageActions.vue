@@ -97,6 +97,7 @@ export default {
 		clickOutside: vClickOutside.directive
 	},
 
+
 	props: {
 		currentUserId: { type: [String, Number], required: true },
 		message: { type: Object, required: true },

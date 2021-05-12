@@ -9990,10 +9990,6 @@ var ChatWindowvue_type_script_lang_js_shadow_require = __webpack_require__("4c1d
       type: Number,
       "default": 900
     },
-    timeSinceSent:{
-      type: Number,
-      require: true
-    },
     singleRoom: {
       type: Boolean,
       "default": false

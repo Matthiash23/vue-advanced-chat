@@ -118,7 +118,6 @@ export default {
 				{ name: 'deleteMessage', title: 'Delete Message', onlyMe: true }
 			]
 		},
-		timeSinceSent:{type: Number, require: true},
 		showAddRoom: { type: Boolean, default: true },
 		showSendIcon: { type: Boolean, default: true },
 		showFiles: { type: Boolean, default: true },
