@@ -11441,10 +11441,10 @@ var MessageActionsvue_type_script_lang_js_require = __webpack_require__("bd43"),
     filteredMessageActions() {
       this.message.senderId === this.currentUserId
        ? this.messageActions
-       : this.messageActions.filter(message => !message.onlyMe)
+       : this.messageActions = this.messageActions.filter(message => !message.onlyMe)
      this.message.timeSinceSent <= 4
        ? this.messageActions
-       : this.messageActions.filter(message => !message.recentEnough)
+       : this.messageActions = this.messageActions.filter(message => !message.recentEnough)
 
      return this.messageActions
    }
