@@ -11439,6 +11439,8 @@ var MessageActionsvue_type_script_lang_js_require = __webpack_require__("bd43"),
       return this.showReactionEmojis && this.messageHover && !this.message.deleted && !this.message.disableReactions && !this.hoverAudioProgress;
     },
     filteredMessageActions() {
+    // check if user is owner of message and message was published under 4 hrs to be able to edit/delete
+    // maybe make the hr limit a changable option
       var tempMessageActions = []
       this.message.senderId === this.currentUserId
        ? tempMessageActions = this.messageActions

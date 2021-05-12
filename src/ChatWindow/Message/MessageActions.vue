@@ -142,6 +142,8 @@ export default {
 			)
 		},
 		filteredMessageActions() {
+		// check if user is owner of message and message was published under 4 hrs to be able to edit/delete
+    // maybe make the hr limit a changable option
 			  var tempMessageActions = []
       this.message.senderId === this.currentUserId
        ? tempMessageActions = this.messageActions
