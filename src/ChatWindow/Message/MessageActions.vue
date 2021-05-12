@@ -142,15 +142,14 @@ export default {
 			)
 		},
 		filteredMessageActions() {
-			// filtering w/ ifs wld need smthg nicer
-			if(message.onlyMe)
-			{return this.message.senderId === this.currentUserId
+			 this.message.senderId === this.currentUserId
 				? this.messageActions
-				: this.messageActions.filter(message => !message.onlyMe)}
-			if(message.recentEnough)
-			{return this.message.timeSinceSent <= 4
+				: this.messageActions.filter(message => !message.onlyMe)
+			this.message.timeSinceSent <= 4
 				? this.messageActions
-				: this.messageActions.filter(message => !message.recentEnough)}
+				: this.messageActions.filter(message => !message.recentEnough)
+
+			return this.messageActions
 		}
 	},
 
