@@ -6,7 +6,8 @@
 <a href="https://www.npmjs.com/package/vue-advanced-chat"><img src="https://img.shields.io/npm/l/vue-advanced-chat.svg"></a>
 </p>
 
-# vue-advanced-chat
+# vue-advanced-chat-customization-drippybeatz.com
+Small modifications planned to the package for more personalization: examination of time for permission to edit/delete, roles in chat(admin/modo)
 
 ![Demo Image](demo/src/assets/web_mobile.png)
 
