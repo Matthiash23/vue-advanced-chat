@@ -142,14 +142,15 @@ export default {
 			)
 		},
 		filteredMessageActions() {
-			 this.message.senderId === this.currentUserId
-				? this.messageActions
-				: this.messageActions = this.messageActions.filter(message => !message.onlyMe)
-			this.message.timeSinceSent <= 4
-				? this.messageActions
-				: this.messageActions = this.messageActions.filter(message => !message.recentEnough)
+			  var tempMessageActions = []
+      this.message.senderId === this.currentUserId
+       ? tempMessageActions = this.messageActions
+       : tempMessageActions = this.messageActions.filter(message => !message.onlyMe)
+     this.message.timeSinceSent <= 4
+       ? tempMessageActions = this.messageActions
+       : tempMessageActions = this.messageActions.filter(message => !message.recentEnough)
 
-			return this.messageActions
+     return tempMessageActions
 		}
 	},
 

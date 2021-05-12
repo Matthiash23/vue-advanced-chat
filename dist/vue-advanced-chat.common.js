@@ -11439,14 +11439,15 @@ var MessageActionsvue_type_script_lang_js_require = __webpack_require__("bd43"),
       return this.showReactionEmojis && this.messageHover && !this.message.deleted && !this.message.disableReactions && !this.hoverAudioProgress;
     },
     filteredMessageActions() {
+      var tempMessageActions = []
       this.message.senderId === this.currentUserId
-       ? this.messageActions
-       : this.messageActions = this.messageActions.filter(message => !message.onlyMe)
+       ? tempMessageActions = this.messageActions
+       : tempMessageActions = this.messageActions.filter(message => !message.onlyMe)
      this.message.timeSinceSent <= 4
-       ? this.messageActions
-       : this.messageActions = this.messageActions.filter(message => !message.recentEnough)
+       ? tempMessageActions = this.messageActions
+       : tempMessageActions = this.messageActions.filter(message => !message.recentEnough)
 
-     return this.messageActions
+     return tempMessageActions
    }
   },
   watch: {
