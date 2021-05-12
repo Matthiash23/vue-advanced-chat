@@ -7372,10 +7372,7 @@ var MessageActionsvue_type_script_lang_js_require = __webpack_require__("bd43"),
       type: Array,
       required: true
     },
-    timeSinceSent:{
-      type: Number,
-      require: true
-    },
+    
     roomFooterRef: {
       type: HTMLDivElement,
       "default": null
@@ -9992,6 +9989,10 @@ var ChatWindowvue_type_script_lang_js_shadow_require = __webpack_require__("4c1d
     responsiveBreakpoint: {
       type: Number,
       "default": 900
+    },
+    timeSinceSent:{
+      type: Number,
+      require: true
     },
     singleRoom: {
       type: Boolean,
