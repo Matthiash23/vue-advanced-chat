@@ -1,6 +1,6 @@
 {
 	"name": "vue-advanced-chat",
-	"version": "0.8.5",
+	"version": "0.8.7",
 	"license": "MIT",
 	"description": "A beautiful chat rooms component made with Vue.js - compatible with Vue, React & Angular",
 	"author": {
@@ -32,8 +32,8 @@
 		"serve": "vue-cli-service serve",
 		"build": "npm run clean:lib && npm run build:lib && npm run build:wc",
 		"clean:lib": "rimraf dist",
-		"build:lib": "vue-cli-service build --target lib --no-clean --name vue-advanced-chat ./src/ChatWindow/index.js",
-		"build:wc": "vue-cli-service build --target wc --no-clean --name vue-advanced-chat ./src/ChatWindow/ChatWindow.vue",
+		"build:lib": "vue-cli-service build --target lib --no-clean --name vue-advanced-chat ./src/lib/index.js",
+		"build:wc": "vue-cli-service build --target wc --no-clean --name vue-advanced-chat ./src/lib/ChatWindow.vue",
 		"prepublish": "npm run lint && npm run build",
 		"publish-beta": "npm publish --tag beta",
 		"lint": "vue-cli-service lint",
@@ -60,7 +60,7 @@
 		"eslint": "^6.7.2",
 		"eslint-plugin-vue": "^7.5.0",
 		"jest": "^23.6.0",
-		"node-sass": "^4.13.0",
+		"node-sass": "^4.14.1",
 		"rimraf": "^2.7.1",
 		"sass-loader": "^10.1.1",
 		"typescript": "^4.0.5",

@@ -195,6 +195,7 @@ fetchMessages({ room, options }) {
 | `room-actions`(8)                   | Array            | -        | `[]`                                    |
 | `menu-actions`(9)                   | Array            | -        | `[]`                                    |
 | `message-actions`(10)               | Array            | -        | (10)                                    |
+| `show-search`                       | Boolean          | -        | `true`                                  |
 | `show-add-room`                     | Boolean          | -        | `true`                                  |
 | `show-send-icon`                    | Boolean          | -        | `true`                                  |
 | `show-files`                        | Boolean          | -        | `true`                                  |
@@ -457,6 +458,7 @@ Message states:
 - `saved: true` one checkmark
 - `distributed: true` two checkmarks
 - `seen: true` two blue checkmarks
+- `deleted: true` grey background with deleted message text
 
 ```javascript
 messages="[
@@ -472,6 +474,7 @@ messages="[
     saved: true,
     distributed: true,
     seen: true,
+    deleted: false,
     disableActions: false,
     disableReactions: false,
     file: {
@@ -601,7 +604,8 @@ Example:
 | `custom-action-icon`                | Add a custom icon inside the footer                         | -                                   | -                                                                                                                  |  | `rooms-header` | Add a template on top of rooms list (above the search bar) | - | - |
 | `room-list-item`                    | Replace the template of the room list items                 | `room`                              | `room-list-options`                                                                                                |
 | `room-list-options`                 | Replace the template of the list room options               | `room`                              | `room-list-options-icon`                                                                                           |
-| `rooms-header`                       | Replace the content above the search bar                   | -                                   | -                                                                                                                     |
+| `rooms-header`                      | Replace the content above the search bar                    | -                                   | -                                                                                                                  |
+| `rooms-list-search`                 | Replace the search bar                                      | -                                   | -                                                                                                                  |
 | `room-header`                       | Replace the template of the room header                     | `room`, `typingUsers`, `userStatus` | `room-options`, `menu-icon`, `toggle-icon`                                                                         |
 | `room-header-avatar`                | Replace the template of the room header avatar              | `room`                              |
 | `room-header-info`                  | Replace the template of the room header text                | `room`, `typingUsers`, `userStatus` |

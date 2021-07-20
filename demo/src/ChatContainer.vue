@@ -63,6 +63,9 @@
 			@typing-message="typingMessage"
 			@toggle-rooms-list="$emit('show-demo-options', $event.opened)"
 		>
+			<!-- <template v-slot:room-header="{ room }">
+				{{ room.roomName }}
+			</template> -->
 		</chat-window>
 	</div>
 </template>
@@ -77,7 +80,7 @@ import {
 	deleteDbField
 } from '@/firestore'
 import { parseTimestamp, isSameDay } from '@/utils/dates'
-import ChatWindow from './../../src/ChatWindow'
+import ChatWindow from './../../src/lib/ChatWindow'
 // import ChatWindow, { Rooms } from 'vue-advanced-chat'
 // import ChatWindow from 'vue-advanced-chat'
 // import 'vue-advanced-chat/dist/vue-advanced-chat.css'
@@ -202,7 +205,7 @@ export default {
 			const roomUserIds = []
 			rooms.forEach(room => {
 				room.data().users.forEach(userId => {
-					const foundUser = this.allUsers.find(user => user._id === userId)
+					const foundUser = this.allUsers.find(user => user?._id === userId)
 					if (!foundUser && roomUserIds.indexOf(userId) === -1) {
 						roomUserIds.push(userId)
 					}
@@ -227,7 +230,7 @@ export default {
 				roomList[room.id] = { ...room.data(), users: [] }
 
 				room.data().users.forEach(userId => {
-					const foundUser = this.allUsers.find(user => user._id === userId)
+					const foundUser = this.allUsers.find(user => user?._id === userId)
 					if (foundUser) roomList[room.id].users.push(foundUser)
 				})
 			})
