@@ -1,5 +1,14 @@
-module.exports =
-/******/ (function(modules) { // webpackBootstrap
+(function webpackUniversalModuleDefinition(root, factory) {
+	if(typeof exports === 'object' && typeof module === 'object')
+		module.exports = factory((function webpackLoadOptionalExternalModule() { try { return require("lamejs"); } catch(e) {} }()));
+	else if(typeof define === 'function' && define.amd)
+		define(["lamejs"], factory);
+	else if(typeof exports === 'object')
+		exports["vue-advanced-chat"] = factory((function webpackLoadOptionalExternalModule() { try { return require("lamejs"); } catch(e) {} }()));
+	else
+		root["vue-advanced-chat"] = factory(root["lamejs"]);
+})((typeof self !== 'undefined' ? self : this), function(__WEBPACK_EXTERNAL_MODULE_db18__) {
+return /******/ (function(modules) { // webpackBootstrap
 /******/ 	// The module cache
 /******/ 	var installedModules = {};
 /******/
@@ -10812,7 +10821,8 @@ module.exports =
 /***/ "db18":
 /***/ (function(module, exports) {
 
-module.exports = require("lamejs");
+if(typeof __WEBPACK_EXTERNAL_MODULE_db18__ === 'undefined') {var e = new Error("Cannot find module 'lamejs'"); e.code = 'MODULE_NOT_FOUND'; throw e;}
+module.exports = __WEBPACK_EXTERNAL_MODULE_db18__;
 
 /***/ }),
 
@@ -18916,4 +18926,5 @@ module.exports = global.Promise;
 /***/ })
 
 /******/ });
-//# sourceMappingURL=vue-advanced-chat.common.js.map
+});
+//# sourceMappingURL=vue-advanced-chat.umd.js.map
