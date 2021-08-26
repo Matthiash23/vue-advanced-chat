@@ -1,5 +1,5 @@
 <p align="center">
-<a href="https://travis-ci.org/antoine92190/vue-advanced-chat"><img src="https://img.shields.io/travis/antoine92190/vue-advanced-chat/master.svg"></a>
+<a href="https://github.com/antoine92190/vue-advanced-chat/actions/workflows/build.yml"><img src="https://img.shields.io/github/workflow/status/antoine92190/vue-advanced-chat/CI"></a>
 <a href="https://www.npmjs.com/package/vue-advanced-chat"><img src="https://img.shields.io/npm/dm/vue-advanced-chat.svg"></a>
 <a href="https://www.npmjs.com/package/vue-advanced-chat"><img src="https://img.shields.io/bundlephobia/minzip/vue-advanced-chat"></a>
 <a href="https://www.npmjs.com/package/vue-advanced-chat"><img src="https://img.shields.io/npm/v/vue-advanced-chat.svg"></a>
@@ -10,6 +10,8 @@
 Small modifications planned to the package for more personalization: examination of time for permission to edit/delete, roles in chat(admin/modo)
 
 ![Demo Image](demo/src/assets/web_mobile.png)
+
+## [Vue 3 compatibility 🚀](#use-in-a-vue-3-project)
 
 ## Features
 
@@ -75,6 +77,9 @@ npm install --save vue-advanced-chat
 
 # Using yarn
 yarn add --save vue-advanced-chat
+
+# Using CDN
+<script src="https://cdn.jsdelivr.net/npm/vue-advanced-chat@0.8.8/dist/vue-advanced-chat.min.js"></script>
 ```
 
 If you want to send mp3 audio messages, you may need to install `lamejs` inside your project:
@@ -83,11 +88,11 @@ If you want to send mp3 audio messages, you may need to install `lamejs` inside 
 npm install lamejs --save
 ```
 
-[Installation with React & Angular](#use-as-a-web-component)
+[Installation with React & Angular](#use-as-a-web-component-with-react-and-angular)
 
 ## Usage
 
-You can import it as a custom component:
+#### You can import it as a custom component:
 
 ```javascript
 <template>
@@ -114,6 +119,31 @@ You can import it as a custom component:
       }
     }
   }
+</script>
+```
+
+#### Or if you used CDN import:
+
+```javascript
+<template>
+  <vue-advanced-chat/>
+</template>
+
+<script>
+export default {
+  data() {
+    return {
+      rooms: [],
+      messages: [],
+      currentUserId: 1234
+    }
+  },
+  mounted() {
+    document.querySelector('vue-advanced-chat').currentUserId = this.currentUserId
+    document.querySelector('vue-advanced-chat').rooms = this.rooms
+    document.querySelector('vue-advanced-chat').messages = this.messages
+  }
+}
 </script>
 ```
 
@@ -145,13 +175,10 @@ this.rooms[i].typingUsers = [...this.rooms[i].typingUsers, typingUserId]
 this.rooms[i].typingUsers.push(typingUserId)
 ```
 
-- To add or replace an item inside an array, use `$set` method or spread operator
+- To add or replace an item inside an array, use spread operator
 
 ```javascript
 // DO THIS
-this.$set(this.rooms, roomIndex, room)
-
-// OR DO THIS
 this.rooms[roomIndex] = room
 this.rooms = [...this.rooms]
 
@@ -185,10 +212,12 @@ fetchMessages({ room, options }) {
 | `height`                            | String           | -        | `600px`                                 |
 | `current-user-id`(1)                | [String, Number] | `true`   | -                                       |
 | `rooms`                             | Array            | -        | `[]`                                    |
+| `rooms-order`                       | String           | -        | `desc`                                  |
 | `loading-rooms`(2)                  | Boolean          | -        | `false`                                 |
 | `rooms-loaded`(3)                   | Boolean          | -        | `false`                                 |
 | `room-id`(4)                        | [String, Number] | -        | `null`                                  |
 | `load-first-room`(5)                | Boolean          | -        | `true`                                  |
+| `rooms-list-opened`                 | Boolean          | -        | `true`                                  |
 | `messages`                          | Array            | -        | `[]`                                    |
 | `room-message`(6)                   | String           | -        | `null`                                  |
 | `messages-loaded`(7)                | Boolean          | -        | `false`                                 |
@@ -207,11 +236,13 @@ fetchMessages({ room, options }) {
 | `text-messages`(13)                 | Object           | -        | `null`                                  |
 | `text-formatting`(14)               | Boolean          | -        | `true`                                  |
 | `link-options`(15)                  | Object           | -        | `{ disabled: false, target: '_blank' }` |
-| `responsive-breakpoint`(16)         | Number           | -        | `900`                                   |
-| `single-room`(17)                   | Boolean          | -        | `false`                                 |
-| `theme`(18)                         | Sring            | -        | `light`                                 |
-| `accepted-files`(19)                | String           | -        | `*`                                     |
-| `styles`(20)                        | Object           | -        | (19)                                    |
+| `room-info-enabled` (16)            | Boolean          | -        | `false`                                 |
+| `textarea-action-enabled`(17)       | Boolean          | -        | `false`                                 |
+| `responsive-breakpoint`(18)         | Number           | -        | `900`                                   |
+| `single-room`(19)                   | Boolean          | -        | `false`                                 |
+| `theme`(20)                         | Sring            | -        | `light`                                 |
+| `accepted-files`(21)                | String           | -        | `*`                                     |
+| `styles`(22)                        | Object           | -        | (19)                                    |
 
 **(1)** `current-user-id` is required to display UI and trigger actions according to the user using the chat (ex: messages position on the right, etc.)
 
@@ -354,17 +385,23 @@ multiline code
 :link-options="{ disabled: true, target: '_self' }"
 ```
 
-**(16)** `responsive-breakpoint` can be used to collapse the rooms list on the left when then viewport size goes below the specified width.
+**(16)** `room-info-enabled` can be used to trigger an event after clicking the room header component.<br>
+You can then use the [room-info](#events-api) event to call your own action after clicking the header.
 
-**(17)** `single-room` can be used if you never want to show the rooms list on the left. You still need to pass the `rooms` prop as an array with a single element.
+**(17)** `textarea-action-enabled` can be used to add an extra icon on the right of the textarea<br>
+You can then use the [textarea-action-handler](#events-api) event to call your own action after clicking the icon.
 
-**(18)** `theme` can be used to change the chat theme. Currently, only `light` and `dark` are available.
+**(18)** `responsive-breakpoint` can be used to collapse the rooms list on the left when then viewport size goes below the specified width.
 
-**(19)** `accepted-files` can be used to set specifics file types allowed in chat. By default, all file types are allowed: `"*"`.
+**(19)** `single-room` can be used if you never want to show the rooms list on the left. You still need to pass the `rooms` prop as an array with a single element.
 
-Example: set `"accepted-files="image/png, image/jpeg, application/pdf"` to allow `JPG` `PNG` and `PDF` files
+**(20)** `theme` can be used to change the chat theme. Currently, only `light` and `dark` are available.
 
-**(20)** `styles` can be used to customize your own theme. You can find the full list [here](src/themes/index.js)
+**(21)** `accepted-files` can be used to set specifics file types allowed in chat. By default, all file types are allowed: `"*"`.
+
+Example: set `"accepted-files="image/png, image/jpeg, application/pdf"` to allow `JPG` `PNG` and `PDF` files only
+
+**(22)** `styles` can be used to customize your own theme. You can find the full list [here](src/themes/index.js)
 
 ```javascript
 styles="{
@@ -446,12 +483,13 @@ rooms="[
 
 ### Messages prop
 
-Message objects are rendered differently depending on their type. Currently, only text, emoji and file types are supported.<br><br>
+Message objects are rendered differently depending on their type. Text, emoji, image, video and file types are supported.<br><br>
 Each message object has a `senderId` field which holds the id of the corresponding agent. If `senderId` matches the `currentUserId` prop, specific UI and actions will be implemented.<br><br>
 Notes:
 
 - `username` will be displayed on each message of corresponding agents if at least 3 users are in the room
 - `system` is used to show messages with a specific centered display
+- `indexId` can be used if you need to change a message ID that is already displayed in a room, this preventing an animation glitch. For example, when you don't know in advance the message ID your backend will create.
 
 Message states:
 
@@ -464,7 +502,8 @@ Message states:
 messages="[
   {
     _id: 7890,
-    content: 'message 1',
+    indexId: 12092,
+    content: 'Message 1',
     senderId: 1234,
     username: 'John Doe',
     avatar: 'assets/imgs/doe.png',
@@ -477,24 +516,41 @@ messages="[
     deleted: false,
     disableActions: false,
     disableReactions: false,
-    file: {
-      name: 'My File',
-      size: 67351,
-      type: 'png',
-      audio: true,
-      duration: 14.4,
-      url: 'https://firebasestorage.googleapis.com/...',
-      preview: 'data:image/png;base64,iVBORw0KGgoAA...'
-    },
+    files: [
+      {
+        name: 'My File',
+        size: 67351,
+        type: 'png',
+        audio: true,
+        duration: 14.4,
+        url: 'https://firebasestorage.googleapis.com/...',
+        preview: 'data:image/png;base64,iVBORw0KGgoAA...'
+      }
+    ],
     reactions: {
-      wink: [
+      😁: [
         1234, // USER_ID
         4321
       ],
-      laughing: [
+      🥰: [
         1234
       ]
-    }
+    },
+    replyMessage: {
+      content: 'Reply Message',
+      senderId: 4321,
+      files: [
+        {
+          name: 'My Replied File',
+          size: 67351,
+          type: 'png',
+          audio: true,
+          duration: 14.4,
+          url: 'https://firebasestorage.googleapis.com/...',
+          preview: 'data:image/png;base64,iVBORw0KGgoAA...'
+        }
+      ]
+    },
   }
 ]"
 ```
@@ -503,24 +559,24 @@ messages="[
 
 ## Events API
 
-| <div style="width:230px">Event</div> | Params                                                                  | Fires when a user                               |
-| ------------------------------------ | ----------------------------------------------------------------------- | ----------------------------------------------- |
-| `fetch-messages`(1)                  | `{ room, options }`                                                     | Scrolled on top to load more messages           |
-| `fetch-more-rooms`(2)                | -                                                                       | Scrolled to load more rooms                     |
-| `send-message`                       | `{ roomId, content, file(8), replyMessage(9), usersTag }`               | Sent a message                                  |
-| `edit-message`                       | `{ roomId, messageId, newContent, file(7), replyMessage(9) ,usersTag }` | Edited a message                                |
-| `delete-message`                     | `{ roomId, message }`                                                   | Deleted a message                               |
-| `open-file`                          | `{ message, action }`                                                   | Clicked to view or download a file              |
-| `open-user-tag`(3)                   | `{ user }`                                                              | Clicked on a user tag inside a message          |
-| `add-room`                           | -                                                                       | Clicked on the plus icon next to searchbar      |
-| `room-action-handler`(4)             | `{ roomId, action }`                                                    | Clicked on the vertical dots icon inside a room |
-| `menu-action-handler`(5)             | `{ roomId, action }`                                                    | Clicked on the vertical dots icon inside a room |
-| `message-action-handler`(6)          | `{ roomId, action, message }`                                           | Clicked on the dropdown icon inside a message   |
-| `send-message-reaction`              | `{ roomId, messageId, reaction, remove }`                               | Clicked on the emoji icon inside a message      |
-| `room-info`                          | `room`                                                                  | Clicked the room header bar                     |
-| `toggle-rooms-list`                  | `{ opened }`                                                            | Clicked on the toggle icon inside a room header |
-| `textarea-action-handler`(7)         | `{ roomId, message }`                                                   | Clicked on custom icon inside the footer        |
-| `typing-message`                     | `{ message, roomId }`                                                   | Started typing a message                        |
+| <div style="width:230px">Event</div> | Params                                                                    | Fires when a user                               |
+| ------------------------------------ | ------------------------------------------------------------------------- | ----------------------------------------------- |
+| `fetch-messages`(1)                  | `{ room, options }`                                                       | Scrolled on top to load more messages           |
+| `fetch-more-rooms`(2)                | -                                                                         | Scrolled to load more rooms                     |
+| `send-message`                       | `{ roomId, content, files(9), replyMessage(10), usersTag }`               | Sent a message                                  |
+| `edit-message`                       | `{ roomId, messageId, newContent, files(9), replyMessage(10) ,usersTag }` | Edited a message                                |
+| `delete-message`                     | `{ roomId, message }`                                                     | Deleted a message                               |
+| `open-file`                          | `{ message, file }`                                                       | Clicked to view or download a file              |
+| `open-user-tag`(3)                   | `{ user }`                                                                | Clicked on a user tag inside a message          |
+| `add-room`                           | -                                                                         | Clicked on the plus icon next to searchbar      |
+| `room-action-handler`(4)             | `{ roomId, action }`                                                      | Clicked on the vertical dots icon inside a room |
+| `menu-action-handler`(5)             | `{ roomId, action }`                                                      | Clicked on the vertical dots icon inside a room |
+| `message-action-handler`(6)          | `{ roomId, action, message }`                                             | Clicked on the dropdown icon inside a message   |
+| `send-message-reaction`              | `{ roomId, messageId, reaction, remove }`                                 | Clicked on the emoji icon inside a message      |
+| `room-info` (7)                      | `room`                                                                    | Clicked the room header bar                     |
+| `toggle-rooms-list`                  | `{ opened }`                                                              | Clicked on the toggle icon inside a room header |
+| `textarea-action-handler`(8)         | `{ roomId, message }`                                                     | Clicked on custom icon inside the footer        |
+| `typing-message`                     | `{ message, roomId }`                                                     | Started typing a message                        |
 
 **(1)** `fetch-messages` is triggered every time a room is opened. If the room is opened for the first time, the `options` param will hold `reset: true`.<br>
 **(1)** `fetch-messages` should be a method implementing a pagination system. Its purpose is to load older messages of a conversation when the user scroll on top.
@@ -581,11 +637,13 @@ messageActionHandler({ roomId, action, message }) {
 }
 ```
 
-**(7)** `textarea-action-handler` can be used to add an extra icon on the right of the textarea, and recieve an event when clicking it.
+**(7)** `room-info` is the result of the [`room-info-enabled`](#props-api) prop.<br>
 
-**(8)** All file params contain: `{ blob, localURL, name, size, type, extension }`
+**(8)** `textarea-action-handler` is the result of the [`textarea-action-enabled`](#props-api) prop.<br>
 
-**(9)** `replyMessage` object is available when the user replied to another message by clicking the corresponding icon, and contains the message information that was clicked.
+**(9)** Array of files where each file contain: `{ blob, localURL, name, size, type, extension }`
+
+**(10)** `replyMessage` object is available when the user replied to another message by clicking the corresponding icon, and contains the message information that was clicked.
 
 <br>
 
@@ -594,7 +652,7 @@ messageActionHandler({ roomId, action, message }) {
 Example:
 
 ```javascript
-<template v-slot:room-header="{ room, userStatus }">
+<template #room-header="{ room, userStatus }">
   {{ room.roomName }} - {{ userStatus }}
 </template>
 ```
@@ -770,6 +828,50 @@ yarn add --save vue
   ...
 >
 </vue-advanced-chat>
+```
+
+<br>
+
+## Use in a Vue 3 project
+
+### Install vue-advance-chat component (next branch)
+
+```bash
+# Using npm
+npm install --save https://github.com/antoine92190/vue-advanced-chat/tarball/next
+```
+
+### Install vue migration build
+
+```bash
+# Using npm
+npm install --save-dev @vue/compat
+```
+
+### Add migration build config
+
+```javascript
+// vue.config.js
+
+module.exports = {
+  chainWebpack: config => {
+    config.resolve.alias.set('vue', '@vue/compat')
+
+    config.module
+      .rule('vue')
+      .use('vue-loader')
+      .tap(options => {
+        return {
+          ...options,
+          compilerOptions: {
+            compatConfig: {
+              MODE: 3
+            }
+          }
+        }
+      })
+  }
+}
 ```
 
 <br>

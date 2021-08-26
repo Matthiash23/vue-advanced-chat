@@ -30,7 +30,7 @@
 			</slot>
 		</div>
 
-		<div v-if="!loadingRooms" class="vac-room-list">
+		<div v-if="!loadingRooms" id="rooms-list" class="vac-room-list">
 			<div
 				v-for="fRoom in filteredRooms"
 				:id="fRoom.roomId"
@@ -54,27 +54,15 @@
 				</room-content>
 			</div>
 			<transition name="vac-fade-message">
-				<infinite-loading
-					v-if="rooms.length && !loadingRooms"
-					force-use-infinite-wrapper=".vac-room-list"
-					web-component-name="vue-advanced-chat"
-					spinner="spiral"
-					@infinite="loadMoreRooms"
-				>
-					<div slot="spinner">
-						<loader :show="true" :infinite="true" />
-					</div>
-					<div slot="no-results" />
-					<div slot="no-more" />
-				</infinite-loading>
+				<div v-if="rooms.length && !loadingRooms" id="infinite-loader">
+					<loader :show="showLoader" :infinite="true" />
+				</div>
 			</transition>
 		</div>
 	</div>
 </template>
 
 <script>
-import InfiniteLoading from 'vue-infinite-loading'
-
 import Loader from '../../components/Loader/Loader'
 
 import RoomsSearch from './RoomsSearch/RoomsSearch'
@@ -85,7 +73,6 @@ import filteredUsers from '../../utils/filter-items'
 export default {
 	name: 'RoomsList',
 	components: {
-		InfiniteLoading,
 		Loader,
 		RoomsSearch,
 		RoomContent
@@ -107,37 +94,45 @@ export default {
 		roomActions: { type: Array, required: true }
 	},
 
+	emits: [
+		'add-room',
+		'room-action-handler',
+		'loading-more-rooms',
+		'fetch-room',
+		'fetch-more-rooms'
+	],
+
 	data() {
 		return {
 			filteredRooms: this.rooms || [],
-			infiniteState: null,
+			infiniteLoader: null,
+			showLoader: true,
 			loadingMoreRooms: false,
 			selectedRoomId: ''
 		}
 	},
 
 	watch: {
-		rooms(newVal, oldVal) {
-			this.filteredRooms = newVal
-
-			if (
-				this.infiniteState &&
-				(newVal.length !== oldVal.length || this.roomsLoaded)
-			) {
-				this.infiniteState.loaded()
-				this.loadingMoreRooms = false
+		rooms: {
+			deep: true,
+			handler(newVal, oldVal) {
+				this.filteredRooms = newVal
+				if (newVal.length !== oldVal.length || this.roomsLoaded) {
+					this.loadingMoreRooms = false
+				}
 			}
 		},
 		loadingRooms(val) {
-			if (val) this.infiniteState = null
+			if (!val) {
+				setTimeout(() => this.initIntersectionObserver())
+			}
 		},
 		loadingMoreRooms(val) {
 			this.$emit('loading-more-rooms', val)
 		},
 		roomsLoaded(val) {
-			if (val && this.infiniteState) {
+			if (val) {
 				this.loadingMoreRooms = false
-				this.infiniteState.complete()
 			}
 		},
 		room: {
@@ -149,6 +144,27 @@ export default {
 	},
 
 	methods: {
+		initIntersectionObserver() {
+			const loader = document.getElementById('infinite-loader')
+
+			if (loader && !this.infiniteLoader) {
+				this.infiniteLoader = loader
+
+				const options = {
+					root: document.getElementById('rooms-list'),
+					rootMargin: '100px',
+					threshold: 0
+				}
+
+				const observer = new IntersectionObserver(entries => {
+					if (entries[0].isIntersecting) {
+						this.loadMoreRooms()
+					}
+				}, options)
+
+				observer.observe(loader)
+			}
+		},
 		searchRoom(ev) {
 			this.filteredRooms = filteredUsers(
 				this.rooms,
@@ -161,15 +177,14 @@ export default {
 			if (!this.isMobile) this.selectedRoomId = room.roomId
 			this.$emit('fetch-room', { room })
 		},
-		loadMoreRooms(infiniteState) {
+		loadMoreRooms() {
 			if (this.loadingMoreRooms) return
 
 			if (this.roomsLoaded) {
 				this.loadingMoreRooms = false
-				return infiniteState.complete()
+				return (this.showLoader = false)
 			}
 
-			this.infiniteState = infiniteState
 			this.$emit('fetch-more-rooms')
 			this.loadingMoreRooms = true
 		}

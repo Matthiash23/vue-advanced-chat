@@ -2,14 +2,13 @@
 	<div class="vac-message-actions-wrapper">
 		<div
 			class="vac-options-container"
-			:class="{ 'vac-options-image': isImage && !message.replyMessage }"
 			:style="{
 				display: hoverAudioProgress ? 'none' : 'initial',
 				width:
 					filteredMessageActions.length && showReactionEmojis ? '70px' : '45px'
 			}"
 		>
-			<transition-group name="vac-slide-left">
+			<transition-group name="vac-slide-left" tag="span">
 				<div
 					v-if="isMessageActions || isMessageReactions"
 					key="1"
@@ -31,7 +30,7 @@
 					</slot>
 				</div>
 
-				<emoji-picker
+				<emoji-picker-container
 					v-if="isMessageReactions"
 					key="3"
 					v-click-outside="closeEmoji"
@@ -47,7 +46,7 @@
 					<template #emoji-picker-icon>
 						<slot name="emoji-picker-reaction-icon" />
 					</template>
-				</emoji-picker>
+				</emoji-picker-container>
 			</transition-group>
 		</div>
 
@@ -85,13 +84,11 @@
 import vClickOutside from 'v-click-outside'
 
 import SvgIcon from '../../../components/SvgIcon/SvgIcon'
-import EmojiPicker from '../../../components/EmojiPicker/EmojiPicker'
-
-const { isImageFile } = require('../../../utils/media-file')
+import EmojiPickerContainer from '../../../components/EmojiPickerContainer/EmojiPickerContainer'
 
 export default {
 	name: 'MessageActions',
-	components: { SvgIcon, EmojiPicker },
+	components: { SvgIcon, EmojiPickerContainer },
 
 	directives: {
 		clickOutside: vClickOutside.directive
@@ -109,6 +106,15 @@ export default {
 		hoverAudioProgress: { type: Boolean, required: true }
 	},
 
+	emits: [
+		'update-emoji-opened',
+		'update-options-opened',
+		'update-message-hover',
+		'hide-options',
+		'message-action-handler',
+		'send-message-reaction'
+	],
+
 	data() {
 		return {
 			menuOptionsTop: 0,
@@ -119,9 +125,6 @@ export default {
 	},
 
 	computed: {
-		isImage() {
-			return isImageFile(this.message.file)
-		},
 		isMessageActions() {
 			return (
 				this.filteredMessageActions.length &&

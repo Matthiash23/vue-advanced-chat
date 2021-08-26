@@ -51,8 +51,8 @@
 				:link-options="linkOptions"
 				:is-mobile="isMobile"
 				:loading-rooms="loadingRooms"
-				:room-info="$listeners['room-info']"
-				:textarea-action="$listeners['textarea-action-handler']"
+				:room-info-enabled="roomInfoEnabled"
+				:textarea-action-enabled="textareaActionEnabled"
 				:accepted-files="acceptedFiles"
 				@toggle-rooms-list="toggleRoomsList"
 				@room-info="roomInfo"
@@ -100,9 +100,11 @@ export default {
 		styles: { type: Object, default: () => ({}) },
 		responsiveBreakpoint: { type: Number, default: 900 },
 		singleRoom: { type: Boolean, default: false },
+		roomsListOpened: { type: Boolean, default: true },
 		textMessages: { type: Object, default: null },
 		currentUserId: { type: [String, Number], default: '' },
 		rooms: { type: Array, default: () => [] },
+		roomsOrder: { type: String, default: 'desc' },
 		loadingRooms: { type: Boolean, default: false },
 		roomsLoaded: { type: Boolean, default: false },
 		roomId: { type: [String, Number], default: null },
@@ -133,10 +135,30 @@ export default {
 			type: Object,
 			default: () => ({ disabled: false, target: '_blank' })
 		},
-		newMessage: { type: Object, default: null },
+		roomInfoEnabled: { type: Boolean, default: false },
+		textareaActionEnabled: { type: Boolean, default: false },
 		roomMessage: { type: String, default: '' },
 		acceptedFiles: { type: String, default: '*' }
 	},
+
+	emits: [
+		'toggle-rooms-list',
+		'room-info',
+		'fetch-messages',
+		'send-message',
+		'edit-message',
+		'delete-message',
+		'open-file',
+		'open-user-tag',
+		'menu-action-handler',
+		'message-action-handler',
+		'send-message-reaction',
+		'typing-message',
+		'textarea-action-handler',
+		'fetch-more-rooms',
+		'add-room',
+		'room-action-handler'
+	],
 
 	data() {
 		return {
@@ -172,6 +194,10 @@ export default {
 				const aVal = a.index || 0
 				const bVal = b.index || 0
 
+				if (this.roomsOrder === 'asc') {
+					return aVal < bVal ? -1 : bVal < aVal ? 1 : 0
+				}
+
 				return aVal > bVal ? -1 : bVal > aVal ? 1 : 0
 			})
 		}
@@ -180,6 +206,7 @@ export default {
 	watch: {
 		rooms: {
 			immediate: true,
+			deep: true,
 			handler(newVal, oldVal) {
 				if (
 					!newVal[0] ||
@@ -232,8 +259,8 @@ export default {
 			})
 		},
 
-		newMessage(val) {
-			this.$set(this.messages, val.index, val.message)
+		roomsListOpened(val) {
+			this.showRoomsList = val
 		}
 	},
 
@@ -279,8 +306,8 @@ export default {
 		deleteMessage(message) {
 			this.$emit('delete-message', { message, roomId: this.room.roomId })
 		},
-		openFile({ message, action }) {
-			this.$emit('open-file', { message, action })
+		openFile({ message, file }) {
+			this.$emit('open-file', { message, file })
 		},
 		openUserTag({ user }) {
 			this.$emit('open-user-tag', { user })

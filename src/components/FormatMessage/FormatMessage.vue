@@ -4,10 +4,13 @@
 		:class="{ 'vac-text-ellipsis': singleLine }"
 	>
 		<div v-if="textFormatting" :class="{ 'vac-text-ellipsis': singleLine }">
-			<template v-for="(message, i) in linkifiedMessage">
+			<div
+				v-for="(message, i) in linkifiedMessage"
+				:key="i"
+				class="vac-format-container"
+			>
 				<component
 					:is="message.url ? 'a' : 'span'"
-					:key="i"
 					:class="{
 						'vac-text-ellipsis': singleLine,
 						'vac-text-bold': message.bold,
@@ -43,7 +46,7 @@
 						<span>{{ message.value }}</span>
 					</template>
 				</component>
-			</template>
+			</div>
 		</div>
 		<div v-else>
 			{{ formattedContent }}
@@ -71,6 +74,8 @@ export default {
 		textFormatting: { type: Boolean, required: true },
 		linkOptions: { type: Object, required: true }
 	},
+
+	emits: ['open-user-tag'],
 
 	computed: {
 		linkifiedMessage() {

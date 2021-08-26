@@ -2,7 +2,7 @@
 	<transition name="vac-slide-up">
 		<div
 			v-if="filteredUsersTag.length"
-			class="vac-tags-container vac-app-box-shadow"
+			class="vac-tags-container"
 			:style="{ bottom: `${$parent.$refs.roomFooter.clientHeight}px` }"
 		>
 			<div
@@ -32,6 +32,8 @@ export default {
 
 	props: {
 		filteredUsersTag: { type: Array, required: true }
-	}
+	},
+
+	emits: ['select-user-tag']
 }
 </script>

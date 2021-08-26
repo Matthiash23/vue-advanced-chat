@@ -28,7 +28,7 @@
 					}"
 				>
 					<span v-if="isMessageCheckmarkVisible">
-						<slot name="checkmark-icon" v-bind="room.lastMessage">
+						<slot name="checkmark-icon" v-bind="{message: room.lastMessage}">
 							<svg-icon
 								:name="
 									room.lastMessage.distributed
@@ -141,6 +141,8 @@ export default {
 		roomActions: { type: Array, required: true }
 	},
 
+	emits: ['room-action-handler'],
+
 	data() {
 		return {
 			roomMenuOpened: null
@@ -195,7 +197,7 @@ export default {
 			)
 		},
 		formattedDuration() {
-			const file = this.room.lastMessage.file
+			const file = this.room.lastMessage.files[0]
 
 			if (!file.duration) {
 				return `${file.name}.${file.extension}`
@@ -205,7 +207,9 @@ export default {
 			return (s - (s %= 60)) / 60 + (s > 9 ? ':' : ':0') + s
 		},
 		isAudio() {
-			return isAudioFile(this.room.lastMessage.file)
+			return this.room.lastMessage.files
+				? isAudioFile(this.room.lastMessage.files[0])
+				: false
 		}
 	},
 
