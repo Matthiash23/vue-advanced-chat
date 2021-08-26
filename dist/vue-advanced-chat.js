@@ -6164,7 +6164,7 @@ exports.tokenize = tokenize;
 /*
  *  ReplayGainAnalysis - analyzes input samples and give the recommended dB change
  *  Copyright (C) 2001 David Robinson and Glen Sawyer
- *  Improvements and optimizations added by Frank Klemm, and by Marcel Muller 
+ *  Improvements and optimizations added by Frank Klemm, and by Marcel Muller
  *
  *  This library is free software; you can redistribute it and/or
  *  modify it under the terms of the GNU Lesser General Public
@@ -9973,11 +9973,11 @@ module.exports = {
  * the reservoir, and checks to make sure main_data_begin was set properly by
  * the formatter<BR>
  * Background information:
- * 
+ *
  * This is the original text from the ISO standard. Because of sooo many bugs
  * and irritations correcting comments are added in brackets []. A '^W' means
  * you should remove the last word.
- * 
+ *
  * <PRE>
  *  1. The following rule can be used to calculate the maximum
  *     number of bits used for one granule [^W frame]:<BR>
@@ -9985,9 +9985,9 @@ module.exports = {
  *     per stereo signal [^W^W^W], 48 kHz) the frames must be of
  *     [^W^W^W are designed to have] constant length, i.e.
  *     one buffer [^W^W the frame] length is:<BR>
- * 
+ *
  *         320 kbps * 1152/48 kHz = 7680 bit = 960 byte
- * 
+ *
  *     This value is used as the maximum buffer per channel [^W^W] at
  *     lower bitrates [than 320 kbps]. At 64 kbps mono or 128 kbps
  *     stereo the main granule length is 64 kbps * 576/48 kHz = 768 bit
@@ -10037,22 +10037,22 @@ function Reservoir() {
 		 *          from the bit reservoir and at most 8*1440 bit from the current
 		 *          frame (320 kbps, 32 kHz), so 8*1951 bit is the largest possible
 		 *          value for MPEG-1 and -2)
-		 * 
+		 *
 		 *          maximum allowed granule/channel size times 4 = 8*2047 bits.,
 		 *          so this is the absolute maximum supported by the format.
-		 * 
-		 * 
+		 *
+		 *
 		 *      fullFrameBits:  maximum number of bits available for encoding
 		 *                      the current frame.
-		 * 
+		 *
 		 *      mean_bits:      target number of bits per granule.
-		 * 
+		 *
 		 *      frameLength:
-		 * 
+		 *
 		 *      gfc.ResvMax:   maximum allowed reservoir
-		 * 
+		 *
 		 *      gfc.ResvSize:  current reservoir size
-		 * 
+		 *
 		 *      l3_side.resvDrain_pre:
 		 *         ancillary data to be added to previous frame:
 		 *         (only usefull in VBR modes if it is possible to have
@@ -10061,10 +10061,10 @@ function Reservoir() {
 		 *         2010-02-13: RH now enabled, it seems to be needed for CBR too,
 		 *                     as there exists one example, where the FhG decoder
 		 *                     can't decode a -b320 CBR file anymore.
-		 * 
+		 *
 		 *      l3_side.resvDrain_post:
 		 *         ancillary data to be added to this frame:
-		 * 
+		 *
 		 * </PRE>
 		 */
 
@@ -10210,13 +10210,13 @@ function Reservoir() {
 		 * even possible to use Gabriel's lax buffer consideration again, which
 		 * assumes, any decoder should have a buffer large enough for a 320 kbps
 		 * frame at 32 kHz sample rate.
-		 * 
+		 *
 		 * old drain code: lame -b320 BlackBird.wav --. does not play with
 		 * GraphEdit.exe using FhG decoder V1.5 Build 50
-		 * 
+		 *
 		 * new drain code: lame -b320 BlackBird.wav --. plays fine with
 		 * GraphEdit.exe using FhG decoder V1.5 Build 50
-		 * 
+		 *
 		 * Robert Hegemann, 2010-02-13.
 		 */
 		/*
@@ -10835,7 +10835,7 @@ var Loadervue_type_template_id_72c38546_staticRenderFns = []
   }
 });
 // CONCATENATED MODULE: ./src/components/Loader/Loader.vue?vue&type=script&lang=js&
- /* harmony default export */ var Loader_Loadervue_type_script_lang_js_ = (Loadervue_type_script_lang_js_); 
+ /* harmony default export */ var Loader_Loadervue_type_script_lang_js_ = (Loadervue_type_script_lang_js_);
 // CONCATENATED MODULE: ./src/components/Loader/Loader.vue
 
 
@@ -10852,7 +10852,7 @@ var component = normalizeComponent(
   null,
   null,
   null
-  
+
 )
 
 /* harmony default export */ var Loader = (component.exports);
@@ -10990,7 +10990,7 @@ var es_function_name = __webpack_require__("b0c0");
   }
 });
 // CONCATENATED MODULE: ./src/components/SvgIcon/SvgIcon.vue?vue&type=script&lang=js&
- /* harmony default export */ var SvgIcon_SvgIconvue_type_script_lang_js_ = (SvgIconvue_type_script_lang_js_); 
+ /* harmony default export */ var SvgIcon_SvgIconvue_type_script_lang_js_ = (SvgIconvue_type_script_lang_js_);
 // CONCATENATED MODULE: ./src/components/SvgIcon/SvgIcon.vue
 
 
@@ -11007,7 +11007,7 @@ var SvgIcon_component = normalizeComponent(
   null,
   null,
   null
-  
+
 )
 
 /* harmony default export */ var SvgIcon = (SvgIcon_component.exports);
@@ -11082,7 +11082,7 @@ var SvgIcon_component = normalizeComponent(
   }
 });
 // CONCATENATED MODULE: ./src/lib/RoomsList/RoomsSearch/RoomsSearch.vue?vue&type=script&lang=js&
- /* harmony default export */ var RoomsSearch_RoomsSearchvue_type_script_lang_js_ = (RoomsSearchvue_type_script_lang_js_); 
+ /* harmony default export */ var RoomsSearch_RoomsSearchvue_type_script_lang_js_ = (RoomsSearchvue_type_script_lang_js_);
 // CONCATENATED MODULE: ./src/lib/RoomsList/RoomsSearch/RoomsSearch.vue
 
 
@@ -11099,7 +11099,7 @@ var RoomsSearch_component = normalizeComponent(
   null,
   null,
   null
-  
+
 )
 
 /* harmony default export */ var RoomsSearch = (RoomsSearch_component.exports);
@@ -11564,7 +11564,7 @@ var constants = __webpack_require__("c9d9");
   }
 });
 // CONCATENATED MODULE: ./src/components/FormatMessage/FormatMessage.vue?vue&type=script&lang=js&
- /* harmony default export */ var FormatMessage_FormatMessagevue_type_script_lang_js_ = (FormatMessagevue_type_script_lang_js_); 
+ /* harmony default export */ var FormatMessage_FormatMessagevue_type_script_lang_js_ = (FormatMessagevue_type_script_lang_js_);
 // CONCATENATED MODULE: ./src/components/FormatMessage/FormatMessage.vue
 
 
@@ -11581,7 +11581,7 @@ var FormatMessage_component = normalizeComponent(
   null,
   null,
   null
-  
+
 )
 
 /* harmony default export */ var FormatMessage = (FormatMessage_component.exports);
@@ -11848,7 +11848,7 @@ var _require = __webpack_require__("bd43"),
   }
 });
 // CONCATENATED MODULE: ./src/lib/RoomsList/RoomContent/RoomContent.vue?vue&type=script&lang=js&
- /* harmony default export */ var RoomContent_RoomContentvue_type_script_lang_js_ = (RoomContentvue_type_script_lang_js_); 
+ /* harmony default export */ var RoomContent_RoomContentvue_type_script_lang_js_ = (RoomContentvue_type_script_lang_js_);
 // CONCATENATED MODULE: ./src/lib/RoomsList/RoomContent/RoomContent.vue
 
 
@@ -11865,7 +11865,7 @@ var RoomContent_component = normalizeComponent(
   null,
   null,
   null
-  
+
 )
 
 /* harmony default export */ var RoomContent = (RoomContent_component.exports);
@@ -12104,7 +12104,7 @@ function formatString(string) {
   }
 });
 // CONCATENATED MODULE: ./src/lib/RoomsList/RoomsList.vue?vue&type=script&lang=js&
- /* harmony default export */ var RoomsList_RoomsListvue_type_script_lang_js_ = (RoomsListvue_type_script_lang_js_); 
+ /* harmony default export */ var RoomsList_RoomsListvue_type_script_lang_js_ = (RoomsListvue_type_script_lang_js_);
 // CONCATENATED MODULE: ./src/lib/RoomsList/RoomsList.vue
 
 
@@ -12121,7 +12121,7 @@ var RoomsList_component = normalizeComponent(
   null,
   null,
   null
-  
+
 )
 
 /* harmony default export */ var RoomsList = (RoomsList_component.exports);
@@ -12433,7 +12433,7 @@ var EmojiPickerContainervue_type_template_id_570a61f5_staticRenderFns = []
   }
 });
 // CONCATENATED MODULE: ./src/components/EmojiPickerContainer/EmojiPickerContainer.vue?vue&type=script&lang=js&
- /* harmony default export */ var EmojiPickerContainer_EmojiPickerContainervue_type_script_lang_js_ = (EmojiPickerContainervue_type_script_lang_js_); 
+ /* harmony default export */ var EmojiPickerContainer_EmojiPickerContainervue_type_script_lang_js_ = (EmojiPickerContainervue_type_script_lang_js_);
 // CONCATENATED MODULE: ./src/components/EmojiPickerContainer/EmojiPickerContainer.vue
 
 
@@ -12450,7 +12450,7 @@ var EmojiPickerContainer_component = normalizeComponent(
   null,
   null,
   null
-  
+
 )
 
 /* harmony default export */ var EmojiPickerContainer = (EmojiPickerContainer_component.exports);
@@ -12623,7 +12623,7 @@ var RoomHeadervue_type_template_id_bb442b02_staticRenderFns = []
   }
 });
 // CONCATENATED MODULE: ./src/lib/Room/RoomHeader/RoomHeader.vue?vue&type=script&lang=js&
- /* harmony default export */ var RoomHeader_RoomHeadervue_type_script_lang_js_ = (RoomHeadervue_type_script_lang_js_); 
+ /* harmony default export */ var RoomHeader_RoomHeadervue_type_script_lang_js_ = (RoomHeadervue_type_script_lang_js_);
 // CONCATENATED MODULE: ./src/lib/Room/RoomHeader/RoomHeader.vue
 
 
@@ -12640,7 +12640,7 @@ var RoomHeader_component = normalizeComponent(
   null,
   null,
   null
-  
+
 )
 
 /* harmony default export */ var RoomHeader = (RoomHeader_component.exports);
@@ -12733,7 +12733,7 @@ var RoomFilevue_type_script_lang_js_require = __webpack_require__("bd43"),
   }
 });
 // CONCATENATED MODULE: ./src/lib/Room/RoomFile/RoomFile.vue?vue&type=script&lang=js&
- /* harmony default export */ var RoomFile_RoomFilevue_type_script_lang_js_ = (RoomFilevue_type_script_lang_js_); 
+ /* harmony default export */ var RoomFile_RoomFilevue_type_script_lang_js_ = (RoomFilevue_type_script_lang_js_);
 // CONCATENATED MODULE: ./src/lib/Room/RoomFile/RoomFile.vue
 
 
@@ -12750,7 +12750,7 @@ var RoomFile_component = normalizeComponent(
   null,
   null,
   null
-  
+
 )
 
 /* harmony default export */ var RoomFile = (RoomFile_component.exports);
@@ -12800,7 +12800,7 @@ var RoomFile_component = normalizeComponent(
   emits: ['remove-file', 'reset-message']
 });
 // CONCATENATED MODULE: ./src/lib/Room/RoomFiles/RoomFiles.vue?vue&type=script&lang=js&
- /* harmony default export */ var RoomFiles_RoomFilesvue_type_script_lang_js_ = (RoomFilesvue_type_script_lang_js_); 
+ /* harmony default export */ var RoomFiles_RoomFilesvue_type_script_lang_js_ = (RoomFilesvue_type_script_lang_js_);
 // CONCATENATED MODULE: ./src/lib/Room/RoomFiles/RoomFiles.vue
 
 
@@ -12817,7 +12817,7 @@ var RoomFiles_component = normalizeComponent(
   null,
   null,
   null
-  
+
 )
 
 /* harmony default export */ var RoomFiles = (RoomFiles_component.exports);
@@ -12908,7 +12908,7 @@ var AudioControlvue_type_template_id_6b023016_staticRenderFns = []
   }
 });
 // CONCATENATED MODULE: ./src/lib/Message/AudioControl/AudioControl.vue?vue&type=script&lang=js&
- /* harmony default export */ var AudioControl_AudioControlvue_type_script_lang_js_ = (AudioControlvue_type_script_lang_js_); 
+ /* harmony default export */ var AudioControl_AudioControlvue_type_script_lang_js_ = (AudioControlvue_type_script_lang_js_);
 // CONCATENATED MODULE: ./src/lib/Message/AudioControl/AudioControl.vue
 
 
@@ -12925,7 +12925,7 @@ var AudioControl_component = normalizeComponent(
   null,
   null,
   null
-  
+
 )
 
 /* harmony default export */ var AudioControl = (AudioControl_component.exports);
@@ -13039,7 +13039,7 @@ var AudioControl_component = normalizeComponent(
   }
 });
 // CONCATENATED MODULE: ./src/lib/Message/AudioPlayer/AudioPlayer.vue?vue&type=script&lang=js&
- /* harmony default export */ var AudioPlayer_AudioPlayervue_type_script_lang_js_ = (AudioPlayervue_type_script_lang_js_); 
+ /* harmony default export */ var AudioPlayer_AudioPlayervue_type_script_lang_js_ = (AudioPlayervue_type_script_lang_js_);
 // CONCATENATED MODULE: ./src/lib/Message/AudioPlayer/AudioPlayer.vue
 
 
@@ -13056,7 +13056,7 @@ var AudioPlayer_component = normalizeComponent(
   null,
   null,
   null
-  
+
 )
 
 /* harmony default export */ var AudioPlayer = (AudioPlayer_component.exports);
@@ -13187,7 +13187,7 @@ var RoomMessageReplyvue_type_script_lang_js_require = __webpack_require__("bd43"
   }
 });
 // CONCATENATED MODULE: ./src/lib/Room/RoomMessageReply/RoomMessageReply.vue?vue&type=script&lang=js&
- /* harmony default export */ var RoomMessageReply_RoomMessageReplyvue_type_script_lang_js_ = (RoomMessageReplyvue_type_script_lang_js_); 
+ /* harmony default export */ var RoomMessageReply_RoomMessageReplyvue_type_script_lang_js_ = (RoomMessageReplyvue_type_script_lang_js_);
 // CONCATENATED MODULE: ./src/lib/Room/RoomMessageReply/RoomMessageReply.vue
 
 
@@ -13204,7 +13204,7 @@ var RoomMessageReply_component = normalizeComponent(
   null,
   null,
   null
-  
+
 )
 
 /* harmony default export */ var RoomMessageReply = (RoomMessageReply_component.exports);
@@ -13255,7 +13255,7 @@ var RoomUsersTagvue_type_template_id_328d605c_staticRenderFns = []
   emits: ['select-user-tag']
 });
 // CONCATENATED MODULE: ./src/lib/Room/RoomUsersTag/RoomUsersTag.vue?vue&type=script&lang=js&
- /* harmony default export */ var RoomUsersTag_RoomUsersTagvue_type_script_lang_js_ = (RoomUsersTagvue_type_script_lang_js_); 
+ /* harmony default export */ var RoomUsersTag_RoomUsersTagvue_type_script_lang_js_ = (RoomUsersTagvue_type_script_lang_js_);
 // CONCATENATED MODULE: ./src/lib/Room/RoomUsersTag/RoomUsersTag.vue
 
 
@@ -13272,7 +13272,7 @@ var RoomUsersTag_component = normalizeComponent(
   null,
   null,
   null
-  
+
 )
 
 /* harmony default export */ var RoomUsersTag = (RoomUsersTag_component.exports);
@@ -13314,7 +13314,7 @@ var RoomEmojisvue_type_template_id_a894c110_staticRenderFns = []
   emits: ['select-emoji']
 });
 // CONCATENATED MODULE: ./src/lib/Room/RoomEmojis/RoomEmojis.vue?vue&type=script&lang=js&
- /* harmony default export */ var RoomEmojis_RoomEmojisvue_type_script_lang_js_ = (RoomEmojisvue_type_script_lang_js_); 
+ /* harmony default export */ var RoomEmojis_RoomEmojisvue_type_script_lang_js_ = (RoomEmojisvue_type_script_lang_js_);
 // CONCATENATED MODULE: ./src/lib/Room/RoomEmojis/RoomEmojis.vue
 
 
@@ -13331,7 +13331,7 @@ var RoomEmojis_component = normalizeComponent(
   null,
   null,
   null
-  
+
 )
 
 /* harmony default export */ var RoomEmojis = (RoomEmojis_component.exports);
@@ -13467,7 +13467,7 @@ var MessageReplyvue_type_script_lang_js_require = __webpack_require__("bd43"),
   }
 });
 // CONCATENATED MODULE: ./src/lib/Message/MessageReply/MessageReply.vue?vue&type=script&lang=js&
- /* harmony default export */ var MessageReply_MessageReplyvue_type_script_lang_js_ = (MessageReplyvue_type_script_lang_js_); 
+ /* harmony default export */ var MessageReply_MessageReplyvue_type_script_lang_js_ = (MessageReplyvue_type_script_lang_js_);
 // CONCATENATED MODULE: ./src/lib/Message/MessageReply/MessageReply.vue
 
 
@@ -13484,7 +13484,7 @@ var MessageReply_component = normalizeComponent(
   null,
   null,
   null
-  
+
 )
 
 /* harmony default export */ var MessageReply = (MessageReply_component.exports);
@@ -13656,7 +13656,7 @@ var MessageFilevue_type_script_lang_js_require = __webpack_require__("bd43"),
   }
 });
 // CONCATENATED MODULE: ./src/lib/Message/MessageFile/MessageFile.vue?vue&type=script&lang=js&
- /* harmony default export */ var MessageFile_MessageFilevue_type_script_lang_js_ = (MessageFilevue_type_script_lang_js_); 
+ /* harmony default export */ var MessageFile_MessageFilevue_type_script_lang_js_ = (MessageFilevue_type_script_lang_js_);
 // CONCATENATED MODULE: ./src/lib/Message/MessageFile/MessageFile.vue
 
 
@@ -13673,7 +13673,7 @@ var MessageFile_component = normalizeComponent(
   null,
   null,
   null
-  
+
 )
 
 /* harmony default export */ var MessageFile = (MessageFile_component.exports);
@@ -13785,7 +13785,7 @@ var MessageFilesvue_type_script_lang_js_require = __webpack_require__("bd43"),
   }
 });
 // CONCATENATED MODULE: ./src/lib/Message/MessageFiles/MessageFiles.vue?vue&type=script&lang=js&
- /* harmony default export */ var MessageFiles_MessageFilesvue_type_script_lang_js_ = (MessageFilesvue_type_script_lang_js_); 
+ /* harmony default export */ var MessageFiles_MessageFilesvue_type_script_lang_js_ = (MessageFilesvue_type_script_lang_js_);
 // CONCATENATED MODULE: ./src/lib/Message/MessageFiles/MessageFiles.vue
 
 
@@ -13802,7 +13802,7 @@ var MessageFiles_component = normalizeComponent(
   null,
   null,
   null
-  
+
 )
 
 /* harmony default export */ var MessageFiles = (MessageFiles_component.exports);
@@ -13975,10 +13975,19 @@ var MessageActionsvue_type_template_id_5d1d27a4_staticRenderFns = []
     isMessageReactions: function isMessageReactions() {
       return this.showReactionEmojis && this.messageHover && !this.message.deleted && !this.message.disableReactions && !this.hoverAudioProgress;
     },
-    filteredMessageActions: function filteredMessageActions() {
-      return this.message.senderId === this.currentUserId ? this.messageActions : this.messageActions.filter(function (message) {
-        return !message.onlyMe;
-      });
+    filteredMessageActions() {
+      // check if user is owner of message and message was published under 4 hrs to be able to edit/delete
+      // maybe make the hr limit a changable option
+      var tempMessageActions = []
+      this.message.senderId === this.currentUserId
+        ? tempMessageActions = this.messageActions
+        : tempMessageActions = this.messageActions.filter(message => !message.onlyMe)
+      this.message.timeSinceSent <= 4
+        ? tempMessageActions = this.messageActions
+        : tempMessageActions = this.messageActions.filter(message => !message.recentEnough)
+
+      return tempMessageActions
+    }
     }
   },
   watch: {
@@ -14056,7 +14065,7 @@ var MessageActionsvue_type_template_id_5d1d27a4_staticRenderFns = []
   }
 });
 // CONCATENATED MODULE: ./src/lib/Message/MessageActions/MessageActions.vue?vue&type=script&lang=js&
- /* harmony default export */ var MessageActions_MessageActionsvue_type_script_lang_js_ = (MessageActionsvue_type_script_lang_js_); 
+ /* harmony default export */ var MessageActions_MessageActionsvue_type_script_lang_js_ = (MessageActionsvue_type_script_lang_js_);
 // CONCATENATED MODULE: ./src/lib/Message/MessageActions/MessageActions.vue
 
 
@@ -14073,7 +14082,7 @@ var MessageActions_component = normalizeComponent(
   null,
   null,
   null
-  
+
 )
 
 /* harmony default export */ var MessageActions = (MessageActions_component.exports);
@@ -14133,7 +14142,7 @@ var MessageReactionsvue_type_template_id_51f19e1d_staticRenderFns = []
   }
 });
 // CONCATENATED MODULE: ./src/lib/Message/MessageReactions/MessageReactions.vue?vue&type=script&lang=js&
- /* harmony default export */ var MessageReactions_MessageReactionsvue_type_script_lang_js_ = (MessageReactionsvue_type_script_lang_js_); 
+ /* harmony default export */ var MessageReactions_MessageReactionsvue_type_script_lang_js_ = (MessageReactionsvue_type_script_lang_js_);
 // CONCATENATED MODULE: ./src/lib/Message/MessageReactions/MessageReactions.vue
 
 
@@ -14150,7 +14159,7 @@ var MessageReactions_component = normalizeComponent(
   null,
   null,
   null
-  
+
 )
 
 /* harmony default export */ var MessageReactions = (MessageReactions_component.exports);
@@ -14400,6 +14409,10 @@ var _require2 = __webpack_require__("bd43"),
       type: Array,
       required: true
     },
+    timeSinceSent: {
+      type: Number,
+      required: true }
+    ,
     roomFooterRef: {
       type: HTMLDivElement,
       "default": null
@@ -14535,7 +14548,7 @@ var _require2 = __webpack_require__("bd43"),
   }
 });
 // CONCATENATED MODULE: ./src/lib/Message/Message.vue?vue&type=script&lang=js&
- /* harmony default export */ var Message_Messagevue_type_script_lang_js_ = (Messagevue_type_script_lang_js_); 
+ /* harmony default export */ var Message_Messagevue_type_script_lang_js_ = (Messagevue_type_script_lang_js_);
 // CONCATENATED MODULE: ./src/lib/Message/Message.vue
 
 
@@ -14552,7 +14565,7 @@ var Message_component = normalizeComponent(
   null,
   null,
   null
-  
+
 )
 
 /* harmony default export */ var Message = (Message_component.exports);
@@ -16095,7 +16108,7 @@ var debounce = function debounce(func, delay) {
   }
 });
 // CONCATENATED MODULE: ./src/lib/Room/Room.vue?vue&type=script&lang=js&
- /* harmony default export */ var Room_Roomvue_type_script_lang_js_ = (Roomvue_type_script_lang_js_); 
+ /* harmony default export */ var Room_Roomvue_type_script_lang_js_ = (Roomvue_type_script_lang_js_);
 // CONCATENATED MODULE: ./src/lib/Room/Room.vue
 
 
@@ -16112,7 +16125,7 @@ var Room_component = normalizeComponent(
   null,
   null,
   null
-  
+
 )
 
 /* harmony default export */ var Room = (Room_component.exports);
@@ -16989,13 +17002,13 @@ var ChatWindowvue_type_script_lang_js_shadow_require = __webpack_require__("4c1d
   }
 });
 // CONCATENATED MODULE: ./src/lib/ChatWindow.vue?vue&type=script&lang=js&shadow
- /* harmony default export */ var lib_ChatWindowvue_type_script_lang_js_shadow = (ChatWindowvue_type_script_lang_js_shadow); 
+ /* harmony default export */ var lib_ChatWindowvue_type_script_lang_js_shadow = (ChatWindowvue_type_script_lang_js_shadow);
 // CONCATENATED MODULE: ./src/lib/ChatWindow.vue?shadow
 
 
 
 function injectStyles (context) {
-  
+
   var style0 = __webpack_require__("85f6")
 if (style0.__inject__) style0.__inject__(context)
 
@@ -23171,8 +23184,8 @@ function instance($$self, $$props, $$invalidate) {
 			/* eslint-disable no-unused-vars */
 			$$invalidate(22, pickerStyle = `
   --font-family: ${FONT_FAMILY};
-  --num-groups: ${groups$1.length}; 
-  --indicator-opacity: ${searchMode ? 0 : 1}; 
+  --num-groups: ${groups$1.length};
+  --indicator-opacity: ${searchMode ? 0 : 1};
   --num-skintones: ${NUM_SKIN_TONES};`);
 		}
 
@@ -23623,7 +23636,7 @@ var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_
     if (descriptor && descriptor.get !== getCurrentScript && document.currentScript) {
       return document.currentScript
     }
-  
+
     // IE 8-10 support script readyState
     // IE 11+ & Firefox support stack trace
     try {
@@ -23641,24 +23654,24 @@ var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_
         inlineScriptSourceRegExp,
         inlineScriptSource,
         scripts = document.getElementsByTagName('script'); // Live NodeList collection
-  
+
       if (scriptLocation === currentLocation) {
         pageSource = document.documentElement.outerHTML;
         inlineScriptSourceRegExp = new RegExp('(?:[^\\n]+?\\n){0,' + (line - 2) + '}[^<]*<script>([\\d\\D]*?)<\\/script>[\\d\\D]*', 'i');
         inlineScriptSource = pageSource.replace(inlineScriptSourceRegExp, '$1').trim();
       }
-  
+
       for (var i = 0; i < scripts.length; i++) {
         // If ready state is interactive, return the script tag
         if (scripts[i].readyState === 'interactive') {
           return scripts[i];
         }
-  
+
         // If src matches, return the script tag
         if (scripts[i].src === scriptLocation) {
           return scripts[i];
         }
-  
+
         // If inline source matches, return the script tag
         if (
           scriptLocation === currentLocation &&
@@ -23668,7 +23681,7 @@ var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_
           return scripts[i];
         }
       }
-  
+
       // If no match, return null
       return null;
     }
