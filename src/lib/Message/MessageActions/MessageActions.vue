@@ -144,23 +144,21 @@ export default {
 			)
 		},
 		filteredMessageActions() {
-		// check if user is owner of message and message was published under 4 hrs to be able to edit/delete
+		// check user is owner of message and message was published under 4 hrs to be able to edit/delete
     // maybe make the hr limit a changable option
       let tempMessageActions = []
-      if(this.message.senderId === this.currentUserId && this.message.timeSinceSent <= 4) {
+      if (this.message.senderId === this.currentUserId && this.message.timeSinceSent <= 4) {
         tempMessageActions = this.messageActions
         return tempMessageActions
-      } else{
-        if(this.message.senderId !== this.currentUserId){
+      } else {
+        if (this.message.senderId !== this.currentUserId) {
           tempMessageActions = this.messageActions.filter(message => !message.onlyMe)
         }
-        if(this.message.timeSinceSent > 4){
+        if (this.message.timeSinceSent > 4) {
           tempMessageActions = this.messageActions.filter(message => !message.recentEnough)
         }
         return tempMessageActions
       }
-
-
 		}
 	},
 
