@@ -450,7 +450,7 @@ export default {
 
 	watch: {
 		message(val) {
-			this.$refs.roomTextarea.value = val
+			this.$refs['roomTextarea'].value = val
 		},
 		loadingMessages(val) {
 			if (val) {
@@ -508,7 +508,7 @@ export default {
 		this.newMessages = []
 		const isMobile = detectMobile()
 
-		this.$refs.roomTextarea.addEventListener(
+		this.$refs['roomTextarea'].addEventListener(
 			'keyup',
 			debounce(e => {
 				if (e.key === 'Enter' && !e.shiftKey && !this.fileDialog) {
